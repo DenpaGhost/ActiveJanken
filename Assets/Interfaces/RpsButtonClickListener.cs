@@ -1,7 +1,7 @@
 namespace Interfaces
 {
-    public interface IRpsButtonClickListener
+    public abstract class IRpsButtonClickListener
     {
-        void OnClick(RpsButton rpsButton);
+        public abstract void OnClick(RpsButton rpsButton);
     }
 }

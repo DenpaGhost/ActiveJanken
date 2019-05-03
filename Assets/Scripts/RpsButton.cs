@@ -6,11 +6,11 @@ using UnityEngine.Serialization;
 
 public class RpsButton : MonoBehaviour
 {
-    public IRpsButtonClickListener listener;
+    public Action<IRpsButtonClickListener> listener;
     public Player player;
 
-    protected virtual void OnClick()
+    public virtual void OnClick()
     {
-        listener?.OnClick(this);
+        listener();
     }
 }

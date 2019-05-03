@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Interfaces;
 using Models;
 using UnityEngine;
 
@@ -18,6 +19,13 @@ public class SceneModel : MonoBehaviour
         aScissors.player = _aPlayer;
         aPaper.player = _aPlayer;
         
+        setListener();
+
+    }
+    
+    private void setListener()
+    {
+        aRock.listener = 
         
     }
 
