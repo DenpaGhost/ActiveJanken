@@ -3,14 +3,20 @@ using Interfaces;
 using Models;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class RpsButton : MonoBehaviour
 {
-    public Action<IRpsButtonClickListener> listener;
     public Player player;
+    public Sukumi sukumi;
+    public Image image;
+    public RpsButtonOnClickHandler handler;
 
-    public virtual void OnClick()
+    public Sprite SukumiIcon => image.sprite;
+
+
+    public void OnClick()
     {
-        listener();
+        handler.OnClick(this);
     }
 }
