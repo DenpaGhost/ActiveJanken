@@ -2,6 +2,9 @@ namespace Models
 {
     public enum Sukumi
     {
-        rock,scissors,paper
+        Blank,
+        Rock,
+        Scissors,
+        Paper
     }
 }

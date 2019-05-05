@@ -21,8 +21,9 @@ namespace Models
         }
 
         public bool IsEnablePickupSukumi => _stopwatch.ElapsedMilliseconds <= Constants.EnablePickupSukumiTime;
-        
+
         private readonly Text _text;
+
         public string Message
         {
             get => _text.text;
@@ -60,13 +61,13 @@ namespace Models
             ResultText resultText)
         {
             rock.player = this;
-            rock.sukumi = Sukumi.rock;
+            rock.sukumi = Sukumi.Rock;
 
             scissors.player = this;
-            scissors.sukumi = Sukumi.scissors;
+            scissors.sukumi = Sukumi.Scissors;
 
             paper.player = this;
-            paper.sukumi = Sukumi.paper;
+            paper.sukumi = Sukumi.Paper;
 
             PickupSukumiImage = pickupSukumiImage;
             _text = text;
@@ -76,6 +77,7 @@ namespace Models
         private void OnIdle()
         {
             Message = Constants.WaitingMessage;
+            _pickupSukumi = Sukumi.Blank;
             _stopwatch.Stop();
         }
 
@@ -95,40 +97,40 @@ namespace Models
 
             switch (playerA.PickupSukumi)
             {
-                case Sukumi.rock:
+                case Sukumi.Rock:
                     switch (playerB.PickupSukumi)
                     {
-                        case Sukumi.rock:
+                        case Sukumi.Rock:
                             return null;
-                        case Sukumi.scissors:
+                        case Sukumi.Scissors:
                             return playerA;
-                        case Sukumi.paper:
+                        case Sukumi.Paper:
                             return playerB;
                         default:
                             return null;
                     }
 
-                case Sukumi.scissors:
+                case Sukumi.Scissors:
                     switch (playerB.PickupSukumi)
                     {
-                        case Sukumi.rock:
+                        case Sukumi.Rock:
                             return playerB;
-                        case Sukumi.scissors:
+                        case Sukumi.Scissors:
                             return null;
-                        case Sukumi.paper:
+                        case Sukumi.Paper:
                             return playerA;
                         default:
                             return null;
                     }
 
-                case Sukumi.paper:
+                case Sukumi.Paper:
                     switch (playerB.PickupSukumi)
                     {
-                        case Sukumi.rock:
+                        case Sukumi.Rock:
                             return playerA;
-                        case Sukumi.scissors:
+                        case Sukumi.Scissors:
                             return playerB;
-                        case Sukumi.paper:
+                        case Sukumi.Paper:
                             return null;
                         default:
                             return null;
