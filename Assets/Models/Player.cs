@@ -29,10 +29,35 @@ namespace Models
             set => Text.text = value;
         }
 
+        private PlayerState _state = PlayerState.Idle;
+
+        public PlayerState State
+        {
+            get => _state;
+            set
+            {
+                _state = value;
+                switch (_state)
+                {
+                    case PlayerState.Idle:
+                        OnIdle();
+                        break;
+                    case PlayerState.Ready:
+                        OnReady();
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+
         public readonly Image PickupSukumiImage;
+        public readonly ResultText ResultText;
+
         private readonly Stopwatch _stopwatch = new Stopwatch();
 
-        public Player(RpsButton rock, RpsButton scissors, RpsButton paper, Image pickupSukumiImage, Text text)
+        public Player(RpsButton rock, RpsButton scissors, RpsButton paper, Image pickupSukumiImage, Text text,
+            ResultText resultText)
         {
             rock.player = this;
             rock.sukumi = Sukumi.rock;
@@ -45,7 +70,18 @@ namespace Models
 
             PickupSukumiImage = pickupSukumiImage;
             Text = text;
+            ResultText = resultText;
+        }
 
+        private void OnIdle()
+        {
+            message = Constants.WaitingMessage;
+            _stopwatch.Stop();
+        }
+
+        private void OnReady()
+        {
+            message = Constants.ReadyMessage;
             _stopwatch.Start();
         }
 

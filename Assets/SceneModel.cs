@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Interfaces;
 using Models;
@@ -14,15 +15,44 @@ public class SceneModel : MonoBehaviour
     public Text aText, bText;
     public Sprite blankSprite;
 
-    public AudioClip seRock, seScissors, sePaper;
-    public AudioSource aSE, bSE;
+    public AudioClip seRock, seScissors, sePaper, startSE, finishSE;
+    public AudioSource aSE, bSE, systemSE;
+
+    public Title title;
+    public ResultText aResult, bResult;
 
     private Player _aPlayer, _bPlayer;
+    private GameState _state = GameState.Idle;
+
+
+    public GameState State
+    {
+        get => _state;
+        set
+        {
+            _state = value;
+
+            switch (_state)
+            {
+                case GameState.Idle:
+                    OnIdle();
+                    break;
+                case GameState.Battle:
+                    OnBattle();
+                    break;
+                case GameState.Result:
+                    OnResult();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+    }
 
     protected void Start()
     {
-        _aPlayer = new Player(aRock, aScissors, aPaper, aPickupSukumi, aText);
-        _bPlayer = new Player(bRock, bScissors, bPaper, bPickupSukumi, bText);
+        _aPlayer = new Player(aRock, aScissors, aPaper, aPickupSukumi, aText, aResult);
+        _bPlayer = new Player(bRock, bScissors, bPaper, bPickupSukumi, bText, bResult);
 
         _setHandler();
     }
@@ -66,10 +96,25 @@ public class SceneModel : MonoBehaviour
         });
     }
 
-    private static void _showPickupSukumi(RpsButton button)
+    private void _showPickupSukumi(RpsButton button)
     {
-        button.player.PickupSukumi = button.sukumi;
-        button.player.PickupSukumiImage.sprite = button.SukumiIcon;
+        if (button.player.State == PlayerState.Idle)
+        {
+            button.player.State = PlayerState.Ready;
+        }
+
+        // ReSharper disable once InvertIf
+        if (_state == GameState.Battle)
+        {
+            button.player.PickupSukumi = button.sukumi;
+            button.player.PickupSukumiImage.sprite = button.SukumiIcon;
+        }
+
+        if (State == GameState.Result)
+        {
+            State = GameState.Idle;
+            _aPlayer.message = _bPlayer.message = Constants.WaitingMessage;
+        }
     }
 
     private static void _playSoundEffect(AudioSource source, AudioClip clip)
@@ -80,21 +125,59 @@ public class SceneModel : MonoBehaviour
 
     protected void Update()
     {
-        foreach (var it in new[] {_aPlayer, _bPlayer})
+        if (State == GameState.Battle)
         {
-            if (!it.IsEnablePickupSukumi)
+            foreach (var it in new[] {_aPlayer, _bPlayer})
             {
-                it.PickupSukumiImage.sprite = blankSprite;
+                if (!it.IsEnablePickupSukumi)
+                {
+                    it.PickupSukumiImage.sprite = blankSprite;
+                }
+            }
+
+            var player = Player.Battle(_aPlayer, _bPlayer);
+            if (player != null)
+            {
+                player.ResultText.Message = Constants.WinningMessage;
+                (player == _aPlayer ? _bPlayer : _aPlayer).ResultText.Message = Constants.LoseMessage;
+
+                State = GameState.Result;
             }
         }
 
-        var player = Player.Battle(_aPlayer, _bPlayer);
-
-        // ReSharper disable once InvertIf
-        if (player != null)
+        if (State == GameState.Idle && _aPlayer.State == PlayerState.Ready && _bPlayer.State == PlayerState.Ready)
         {
-            player.message = Constants.WinningMessage;
-            (player == _aPlayer ? _bPlayer : _aPlayer).message = Constants.LoseMessage;
+            State = GameState.Battle;
         }
+    }
+
+    private void OnIdle()
+    {
+        title.Show();
+
+        _aPlayer.ResultText.Close();
+        _bPlayer.ResultText.Close();
+    }
+
+    private void OnBattle()
+    {
+        title.Close();
+        systemSE.Stop();
+        systemSE.PlayOneShot(startSE);
+    }
+
+    private void OnResult()
+    {
+        _aPlayer.State = _bPlayer.State = PlayerState.Idle;
+        systemSE.Stop();
+        systemSE.PlayOneShot(finishSE);
+
+        foreach (var it in new[] {_aPlayer, _bPlayer})
+        {
+            it.PickupSukumiImage.sprite = blankSprite;
+        }
+
+        _aPlayer.ResultText.Show();
+        _bPlayer.ResultText.Show();
     }
 }
