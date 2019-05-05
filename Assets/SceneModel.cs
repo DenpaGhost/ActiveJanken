@@ -12,6 +12,7 @@ public class SceneModel : MonoBehaviour
 
     public Image aPickupSukumi, bPickupSukumi;
     public Text aText, bText;
+    public Sprite blankSprite;
 
     private Player _aPlayer, _bPlayer;
 
@@ -42,19 +43,18 @@ public class SceneModel : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        if (!_aPlayer.IsEnablePickupSukumi)
+        foreach (var it in new[] {_aPlayer, _bPlayer})
         {
-            _aPlayer.PickupSukumiImage.sprite = null;
-        }
-
-        if (!_bPlayer.IsEnablePickupSukumi)
-        {
-            _bPlayer.PickupSukumiImage.sprite = null;
+            if (!it.IsEnablePickupSukumi)
+            {
+                it.PickupSukumiImage.sprite = blankSprite;
+            }
         }
 
         var player = Player.Battle(_aPlayer, _bPlayer);
         if (player == null) return;
-        player.message = "Win!!";
-        (player == _aPlayer ? _bPlayer : _aPlayer).message = "Lose...";
+
+        player.message = Constants.WinningMessage;
+        (player == _aPlayer ? _bPlayer : _aPlayer).message = Constants.LoseMessage;
     }
 }
