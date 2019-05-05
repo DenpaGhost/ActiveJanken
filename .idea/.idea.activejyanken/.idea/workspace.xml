@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f3718677-4d2f-47ea-ac93-37ee5137546a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.activejyanken/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.activejyanken/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.activejyanken/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.activejyanken/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.activejyanken/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.activejyanken/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Constants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Constants.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SceneModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SceneModel.cs" afterDir="false" />
-    </list>
+    <list default="true" id="f3718677-4d2f-47ea-ac93-37ee5137546a" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +13,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/SceneModel.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="57" column="82" selection-start-line="57" selection-start-column="82" selection-end-line="57" selection-end-column="82" />
+            <state relative-caret-position="645">
+              <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
               <folding>
                 <marker date="1557022537379" expanded="false" signature="6:132" ph="..." />
                 <marker date="1557022537379" expanded="true" signature="173:1634" ph="{...}" />
@@ -198,12 +191,20 @@
       <option name="presentableId" value="Default" />
       <updated>1556956150227</updated>
       <workItem from="1556956173875" duration="9232000" />
-      <workItem from="1557021354179" duration="807000" />
+      <workItem from="1557021354179" duration="1301000" />
     </task>
+    <task id="LOCAL-00001" summary="[add]ブランクスプライトの実装">
+      <created>1557022605657</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1557022605657</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10039000" />
+    <option name="totallyTimeSpent" value="10533000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -250,6 +251,10 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="[add]ブランクスプライトの実装" />
+    <option name="LAST_COMMIT_MESSAGE" value="[add]ブランクスプライトの実装" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -322,8 +327,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/SceneModel.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="57" column="82" selection-start-line="57" selection-start-column="82" selection-end-line="57" selection-end-column="82" />
+        <state relative-caret-position="645">
+          <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
           <folding>
             <marker date="1557022537379" expanded="false" signature="6:132" ph="..." />
             <marker date="1557022537379" expanded="true" signature="173:1634" ph="{...}" />
