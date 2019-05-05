@@ -21,12 +21,12 @@ namespace Models
         }
 
         public bool IsEnablePickupSukumi => _stopwatch.ElapsedMilliseconds <= Constants.EnablePickupSukumiTime;
-        private readonly Text Text;
-
-        public string message
+        
+        private readonly Text _text;
+        public string Message
         {
-            get => Text.text;
-            set => Text.text = value;
+            get => _text.text;
+            set => _text.text = value;
         }
 
         private PlayerState _state = PlayerState.Idle;
@@ -69,19 +69,19 @@ namespace Models
             paper.sukumi = Sukumi.paper;
 
             PickupSukumiImage = pickupSukumiImage;
-            Text = text;
+            _text = text;
             ResultText = resultText;
         }
 
         private void OnIdle()
         {
-            message = Constants.WaitingMessage;
+            Message = Constants.WaitingMessage;
             _stopwatch.Stop();
         }
 
         private void OnReady()
         {
-            message = Constants.ReadyMessage;
+            Message = Constants.ReadyMessage;
             _stopwatch.Start();
         }
 

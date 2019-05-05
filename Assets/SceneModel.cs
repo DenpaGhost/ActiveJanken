@@ -61,59 +61,62 @@ public class SceneModel : MonoBehaviour
     {
         aRock.handler = new RpsButtonOnClickHandler(button =>
         {
-            _showPickupSukumi(button);
+            _buttonClickEvent(button);
             _playSoundEffect(aSE, seRock);
         });
 
         aScissors.handler = new RpsButtonOnClickHandler(button =>
         {
-            _showPickupSukumi(button);
+            _buttonClickEvent(button);
             _playSoundEffect(aSE, seScissors);
         });
 
         aPaper.handler = new RpsButtonOnClickHandler(button =>
         {
-            _showPickupSukumi(button);
+            _buttonClickEvent(button);
             _playSoundEffect(aSE, sePaper);
         });
 
         bRock.handler = new RpsButtonOnClickHandler(button =>
         {
-            _showPickupSukumi(button);
+            _buttonClickEvent(button);
             _playSoundEffect(bSE, seRock);
         });
 
         bScissors.handler = new RpsButtonOnClickHandler(button =>
         {
-            _showPickupSukumi(button);
+            _buttonClickEvent(button);
             _playSoundEffect(bSE, seScissors);
         });
 
         bPaper.handler = new RpsButtonOnClickHandler(button =>
         {
-            _showPickupSukumi(button);
+            _buttonClickEvent(button);
             _playSoundEffect(bSE, sePaper);
         });
     }
 
-    private void _showPickupSukumi(RpsButton button)
+    private void _buttonClickEvent(RpsButton button)
     {
-        if (button.player.State == PlayerState.Idle)
+        switch (State)
         {
-            button.player.State = PlayerState.Ready;
-        }
+            case GameState.Idle:
+                if (button.player.State == PlayerState.Idle)
+                {
+                    button.player.State = PlayerState.Ready;
+                }
 
-        // ReSharper disable once InvertIf
-        if (_state == GameState.Battle)
-        {
-            button.player.PickupSukumi = button.sukumi;
-            button.player.PickupSukumiImage.sprite = button.SukumiIcon;
-        }
-
-        if (State == GameState.Result)
-        {
-            State = GameState.Idle;
-            _aPlayer.message = _bPlayer.message = Constants.WaitingMessage;
+                break;
+            case GameState.Battle:
+                button.player.PickupSukumi = button.sukumi;
+                button.player.PickupSukumiImage.sprite = button.SukumiIcon;
+                break;
+            case GameState.Result:
+                State = GameState.Idle;
+                _aPlayer.Message = _bPlayer.Message = Constants.WaitingMessage;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 
@@ -154,7 +157,6 @@ public class SceneModel : MonoBehaviour
     private void OnIdle()
     {
         title.Show();
-
         _aPlayer.ResultText.Close();
         _bPlayer.ResultText.Close();
     }
@@ -168,16 +170,15 @@ public class SceneModel : MonoBehaviour
 
     private void OnResult()
     {
-        _aPlayer.State = _bPlayer.State = PlayerState.Idle;
         systemSE.Stop();
         systemSE.PlayOneShot(finishSE);
 
-        foreach (var it in new[] {_aPlayer, _bPlayer})
-        {
-            it.PickupSukumiImage.sprite = blankSprite;
-        }
-
+        _aPlayer.State = PlayerState.Idle;
+        _aPlayer.PickupSukumiImage.sprite = blankSprite;
         _aPlayer.ResultText.Show();
+
+        _bPlayer.State = PlayerState.Idle;
+        _bPlayer.PickupSukumiImage.sprite = blankSprite;
         _bPlayer.ResultText.Show();
     }
 }
