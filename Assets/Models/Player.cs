@@ -21,7 +21,7 @@ namespace Models
         }
 
         public bool IsEnablePickupSukumi => _stopwatch.ElapsedMilliseconds <= Constants.EnablePickupSukumiTime;
-        public Text Text;
+        private readonly Text Text;
 
         public string message
         {
