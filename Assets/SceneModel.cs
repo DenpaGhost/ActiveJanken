@@ -157,6 +157,10 @@ public class SceneModel : MonoBehaviour
     private void OnIdle()
     {
         title.Show();
+        
+        _aPlayer.PickupSukumiImage.sprite = blankSprite;
+        _bPlayer.PickupSukumiImage.sprite = blankSprite;
+
         _aPlayer.ResultText.Close();
         _bPlayer.ResultText.Close();
     }
@@ -174,11 +178,9 @@ public class SceneModel : MonoBehaviour
         systemSE.PlayOneShot(finishSE);
 
         _aPlayer.State = PlayerState.Idle;
-        _aPlayer.PickupSukumiImage.sprite = blankSprite;
         _aPlayer.ResultText.Show();
 
         _bPlayer.State = PlayerState.Idle;
-        _bPlayer.PickupSukumiImage.sprite = blankSprite;
         _bPlayer.ResultText.Show();
     }
 }
