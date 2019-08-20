@@ -78,7 +78,6 @@ namespace Models
 
         private void OnIdle()
         {
-            Message = Constants.WaitingMessage;
             _pickupSukumi = Sukumi.Blank;
             _stopwatch.Stop();
         }

@@ -8,5 +8,6 @@ namespace Models
         public const string WinningMessage = "Win!!";
         public const string LoseMessage = "Lose...";
         public const string TapToReturn = "- ボタンを押して戻る -";
+        public const float WaitForResultTime = 3.0f;
     }
 }

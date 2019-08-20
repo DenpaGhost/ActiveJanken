@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f3718677-4d2f-47ea-ac93-37ee5137546a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.activejyanken/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.activejyanken/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Constants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Constants.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Models/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SceneModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SceneModel.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,14 +38,14 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/RpsButton.cs" />
         <option value="$PROJECT_DIR$/Assets/Models/PlayerStatus.cs" />
         <option value="$PROJECT_DIR$/Assets/Models/PlayerState.cs" />
-        <option value="$PROJECT_DIR$/Assets/Models/GameState.cs" />
         <option value="$PROJECT_DIR$/Assets/Models/Animations.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Title.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ResultText.cs" />
         <option value="$PROJECT_DIR$/Assets/Models/Sukumi.cs" />
+        <option value="$PROJECT_DIR$/Assets/Models/GameState.cs" />
         <option value="$PROJECT_DIR$/Assets/Models/Constants.cs" />
-        <option value="$PROJECT_DIR$/Assets/SceneModel.cs" />
         <option value="$PROJECT_DIR$/Assets/Models/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/SceneModel.cs" />
       </list>
     </option>
   </component>
@@ -106,7 +108,7 @@
       <workItem from="1557049701626" duration="1242000" />
       <workItem from="1557093828124" duration="299000" />
       <workItem from="1557098599129" duration="140000" />
-      <workItem from="1566303400671" duration="809000" />
+      <workItem from="1566303400671" duration="2081000" />
     </task>
     <task id="LOCAL-00001" summary="[add]ブランクスプライトの実装">
       <created>1557022605657</created>
@@ -122,7 +124,21 @@
       <option name="project" value="LOCAL" />
       <updated>1566304012701</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="日本語化">
+      <created>1566304231100</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1566304231100</updated>
+    </task>
+    <task id="LOCAL-00004" summary="バトル中の文字非表示">
+      <created>1566304414586</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1566304414586</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,7 +161,8 @@
     <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="true" />
     <MESSAGE value="[add]ブランクスプライトの実装" />
     <MESSAGE value="日本語化" />
-    <option name="LAST_COMMIT_MESSAGE" value="日本語化" />
+    <MESSAGE value="バトル中の文字非表示" />
+    <option name="LAST_COMMIT_MESSAGE" value="バトル中の文字非表示" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
