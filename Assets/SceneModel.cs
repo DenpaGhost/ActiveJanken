@@ -43,6 +43,9 @@ public class SceneModel : MonoBehaviour
                 case GameState.Result:
                     OnResult();
                     break;
+                case GameState.ResultLock:
+                    OnResultLock();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -113,7 +116,8 @@ public class SceneModel : MonoBehaviour
                 break;
             case GameState.Result:
                 State = GameState.Idle;
-                _aPlayer.Message = _bPlayer.Message = Constants.WaitingMessage;
+                break;
+            case GameState.ResultLock:
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -144,7 +148,7 @@ public class SceneModel : MonoBehaviour
                 player.ResultText.Message = Constants.WinningMessage;
                 (player == _aPlayer ? _bPlayer : _aPlayer).ResultText.Message = Constants.LoseMessage;
 
-                State = GameState.Result;
+                State = GameState.ResultLock;
             }
         }
 
@@ -157,7 +161,8 @@ public class SceneModel : MonoBehaviour
     private void OnIdle()
     {
         title.Show();
-        
+        _aPlayer.Message = _bPlayer.Message = Constants.WaitingMessage;
+
         _aPlayer.PickupSukumiImage.sprite = blankSprite;
         _bPlayer.PickupSukumiImage.sprite = blankSprite;
 
@@ -170,17 +175,33 @@ public class SceneModel : MonoBehaviour
         title.Close();
         systemSE.Stop();
         systemSE.PlayOneShot(startSE);
+
+        _aPlayer.Message = "";
+        _bPlayer.Message = "";
     }
 
-    private void OnResult()
+    private void OnResultLock()
     {
         systemSE.Stop();
         systemSE.PlayOneShot(finishSE);
 
-        _aPlayer.State = PlayerState.Idle;
         _aPlayer.ResultText.Show();
-
-        _bPlayer.State = PlayerState.Idle;
         _bPlayer.ResultText.Show();
+
+        StartCoroutine(waitForResult());
+    }
+
+    private IEnumerator waitForResult()
+    {
+        yield return new WaitForSeconds(Constants.WaitForResultTime);
+        State = GameState.Result;
+    }
+
+    private void OnResult()
+    {
+        _aPlayer.Message = _bPlayer.Message = Constants.TapToReturn;
+
+        _aPlayer.State = PlayerState.Idle;
+        _bPlayer.State = PlayerState.Idle;
     }
 }

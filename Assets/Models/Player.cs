@@ -72,11 +72,12 @@ namespace Models
             PickupSukumiImage = pickupSukumiImage;
             _text = text;
             ResultText = resultText;
+            
+            Message = Constants.WaitingMessage;
         }
 
         private void OnIdle()
         {
-            Message = Constants.WaitingMessage;
             _pickupSukumi = Sukumi.Blank;
             _stopwatch.Stop();
         }

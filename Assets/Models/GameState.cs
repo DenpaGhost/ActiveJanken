@@ -2,6 +2,9 @@ namespace Models
 {
     public enum GameState
     {
-        Idle,Battle,Result
+        Idle,
+        Battle,
+        Result,
+        ResultLock
     }
 }
