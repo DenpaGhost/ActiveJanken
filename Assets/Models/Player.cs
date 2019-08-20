@@ -72,6 +72,8 @@ namespace Models
             PickupSukumiImage = pickupSukumiImage;
             _text = text;
             ResultText = resultText;
+            
+            Message = Constants.WaitingMessage;
         }
 
         private void OnIdle()
