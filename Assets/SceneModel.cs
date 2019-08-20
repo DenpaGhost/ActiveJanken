@@ -170,6 +170,9 @@ public class SceneModel : MonoBehaviour
         title.Close();
         systemSE.Stop();
         systemSE.PlayOneShot(startSE);
+        
+        _aPlayer.Message = "";
+        _bPlayer.Message = "";
     }
 
     private void OnResult()
@@ -182,5 +185,10 @@ public class SceneModel : MonoBehaviour
 
         _bPlayer.State = PlayerState.Idle;
         _bPlayer.ResultText.Show();
+    }
+
+    private void OnResultLock()
+    {
+        
     }
 }
